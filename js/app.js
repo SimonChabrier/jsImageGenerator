@@ -32,12 +32,12 @@ const app = {
         // set a query proportionate image height in % of curent user screen resolution
         if (app.checkScreenResolution() >= 1920){
             imgHeight = Math.round(imgHeight * 55 / 100);
-            console.log('screen up than 1920px : request img size = ' + imgHeight)
+            //console.log('screen up than 1920px : request img size = ' + imgHeight)
         }
 
         if (app.checkScreenResolution() < 1919){
             imgHeight = Math.round(imgHeight * 30 / 100);
-            console.log('screen less than 1920px : request img size =  ' + imgHeight)
+            //console.log('screen less than 1920px : request img size =  ' + imgHeight)
         }
 
         return imgHeight
@@ -147,24 +147,23 @@ const app = {
     //Listen SmartphoneOrientation
     listenMobileAcceleration:function (){
     window.addEventListener('reading', app.handleMobileStyleOrientationStyle)
-    acl.start();
+    //acl.start();
     },
 
     //Syle change on SmartphoneOrientation
     handleMobileStyleOrientationStyle:function(){
 
         let acl = new Accelerometer({frequency: 60});
-        console.log(acl)
 
         console.log("Acceleration along the X-axis " + acl.x);
-        console.log("Acceleration along the Y-axis " + acl.y);
-        console.log("Acceleration along the Z-axis " + acl.z);
+        //console.log("Acceleration along the Y-axis " + acl.y);
+        //console.log("Acceleration along the Z-axis " + acl.z);
 
         let imgList = document.querySelectorAll('img');                        
         for (let i = 0; i < imgList.length; i++) {   
 
-        imgList[i].addEventListener('reading', function(event) {   
-            if (event) {
+        imgList[i].addEventListener('reading', function() {   
+            if (acl.x) {
             i.style.filter = "grayscale(100%)";     
             i.style.borderRadius = 100 + '%';
             i.style.transition = "1.2s"; 
