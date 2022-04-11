@@ -96,7 +96,7 @@ const app = {
         let Interval = setInterval(function(){ // Set a time interval between each action
         
         app.OnMouseOverAction(); // call my custom style function
-        app.listenMobileOrientation(); // call mobile orientation
+        app.handleMobileStyleOrientationStyle(); // call mobile orientation
 
         let imageInsert = document.getElementById('insert'); 
         let divSize = imageInsert.offsetHeight;
@@ -145,17 +145,25 @@ const app = {
     },
 
     //Listen SmartphoneOrientation
-    listenMobileOrientation:function (){
-    window.addEventListener("orientationchange", app.handleMobileStyleOrientationStyle)
+    listenMobileAcceleration:function (){
+    window.addEventListener('reading', app.handleMobileStyleOrientationStyle)
+    acl.start();
     },
 
     //Syle change on SmartphoneOrientation
     handleMobileStyleOrientationStyle:function(){
 
+        let acl = new Accelerometer({frequency: 60});
+        console.log(acl)
+
+        console.log("Acceleration along the X-axis " + acl.x);
+        console.log("Acceleration along the Y-axis " + acl.y);
+        console.log("Acceleration along the Z-axis " + acl.z);
+
         let imgList = document.querySelectorAll('img');                        
         for (let i = 0; i < imgList.length; i++) {   
 
-        imgList[i].addEventListener("orientationchange", function(event) {   
+        imgList[i].addEventListener('reading', function(event) {   
             if (event) {
             i.style.filter = "grayscale(100%)";     
             i.style.borderRadius = 100 + '%';
@@ -171,6 +179,7 @@ const app = {
 
         }   
     },
+
 
 }
 
