@@ -12,21 +12,26 @@ const app = {
         return Math.floor(Math.random() * 100);
     },
 
+
+    checkScreenSize :function(){
+        // check curent user screen resolution
+        let screenWidth = window.screen.width * window.devicePixelRatio ;
+        return screenWidth;
+    },
+
     //pic size adaptation
     requestPictureSize : function (){
         
         // request image size in terms of user current window size.
         let imgHeight = Math.round((( window.innerHeight)));
-        // check curent user screen resolution
-        let screenWidth = window.screen.width * window.devicePixelRatio ;
 
         // set a query proportionate image height in % of curent user screen resolution
-        if (screenWidth >= 1920){
+        if (app.checkScreenSize() >= 1920){
             imgHeight = Math.round(imgHeight * 55 / 100);
             console.log('screen up than 1920px : request img size = ' + imgHeight)
         }
 
-        if (screenWidth < 1919){
+        if (app.checkScreenSize() < 1919){
             imgHeight = Math.round(imgHeight * 30 / 100);
             console.log('screen less than 1920px : request img size =  ' + imgHeight)
         }
