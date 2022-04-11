@@ -6,20 +6,27 @@ const app = {
         app.appendImage();
     },
 
-    //number generator
-    randomNumber: function () 
-    {
-        return Math.floor(Math.random() * 100);
+    // listen window rezise action
+    listenIfWindowIsResized: function (){
+    // Attach event listener on window resize event
+    window.addEventListener('resize', app.handledDisplayWindowSize)
     },
 
+    // dynamically get curent window size
+    handledDisplayWindowSize : function() {
+        let currentHeight = window.innerHeight;
+        return currentHeight;
+    },
+        
+
     //get client screen resolution
-    checkScreenResolution :function(){
+    checkScreenResolution :function() {
         let screenWidth = window.screen.width * window.devicePixelRatio ;
         return screenWidth;
     },
 
-    //pic size adaptation
-    requestPictureSize : function (){
+    //optimize requested pics size on sreen resolution
+    requestPictureSize : function () {
         
         // request image size in terms of user current window size.
         let imgHeight = Math.round((( window.innerHeight)));
@@ -38,22 +45,35 @@ const app = {
         return imgHeight
     },
 
-    //pic generator 
-    imageGenerateur: function () 
-    {   
+    //number generator for randomize requested pics in LoremPicsum
+    generateRandomNumber: function () {
+        return Math.floor(Math.random() * 100);
+    },
+
+    //pics generator 
+    pictureGenerator: function () {   
         //init new empty image tag
         let img = document.createElement('img');
         //insert link in this new empty image tag
-        img.src = 'https://picsum.photos/' + app.requestPictureSize() + '/?random=' + app.randomNumber();
+        img.src = 'https://picsum.photos/' + app.requestPictureSize() + '/?random=' + app.generateRandomNumber();
 
-        //set start picture styles diplay state
+        app.setStyleOnPictureGeneration(img);
+        // return each new img element and style properties
+        return img; 
+
+    },
+
+    //set picts style on pict generate start and end state
+    setStyleOnPictureGeneration : function (img) {
+
+        //start display state state
         img.style.opacity = '0'
         img.style.width = '0'; 
         img.style.borderRadius = '100%'; 
         img.style.transition = '5s';
         
-        //set end picture styles diplay state
-        setInterval(function(){   
+        //final pict display state
+        setInterval(function() {   
         img.style.width = '';   
         img.style.opacity = '1';  
         img.style.borderRadius = ''; 
@@ -62,66 +82,59 @@ const app = {
         }
 
         if (app.checkScreenResolution() <= 1919){
-            img.style.width = 30 + '%'; 
-            }
-        
+            img.style.width = 33.33 + '%'; 
+        }
+
         }, 1000)
-
-        // return each new img element and style properties
-        return img; 
-
     },
 
-    //append img generator 
-    appendImage: function () 
-    {       
+    //append generated picts
+    appendImage: function () {   
+        // listent if user resize the window
+        app.listenIfWindowIsResized();
+        
+        let Interval = setInterval(function(){ // Set a time interval between each action
 
-            let windowHeight = window.innerHeight; //get user window current height
+        let imageInsert = document.getElementById('insert'); 
+        let divSize = imageInsert.offsetHeight
 
-            let Interval = setInterval(function(){ // I set a time interval between each action
+        if (divSize < app.handledDisplayWindowSize()) { 
 
-            let imageInsert = document.getElementById('insert'); 
-            let divSize = imageInsert.offsetHeight
+            let img = app.pictureGenerator(); // call my image generator function to grab each new generated picture
+            imageInsert.append(img); // Happend each new generated picture
+            app.OnMouseOverAction(); // call my custom style function
+        } 
+          
+        }, 250) //timming between insert actions in ms
 
-            if(divSize < windowHeight) { 
-
-                let img = app.imageGenerateur(); // call my image generator function to grab each new generated picture
-                imageInsert.append(img); // Happend each new generated picture
-                
-                app.OnMouseOver(); // call my custom style function
-  
-            } else (
-                
-                clearInterval(Interval)
-            )
-           
-        }, 380) //timming between insert actions in ms
+        if (app.handledDisplayWindowSize() > app.handledDisplayWindowSize()) (
+            clearInterval(Interval)
+        )
                                                                                                                             
     },     
 
-    //style generator on currentTarget                                                                                                                                                                                                                      
-    OnMouseOver: function ()
-    {
+    //style actions on currentTarget                                                                                                                                                                                                                      
+    OnMouseOverAction: function () {
         let imgList = document.querySelectorAll('img');                        
         for (let i = 0; i < imgList.length; i++) {   
 
-            imgList[i].addEventListener("mouseover", function(event) {                                                            
-            if (app.checkScreenResolution() >= 1920){
-            event.target.style.width = 20 + '%'; 
-            }
-            if (app.checkScreenResolution() <= 1919){
-            event.target.style.width = 50 + '%';  
-            }  
-            event.target.style.filter = "grayscale(100%)";     
-            event.target.style.borderRadius = 100 + '%';
-            event.target.style.transition = "1.2s"; 
-            })
+        imgList[i].addEventListener("mouseover", function(event) {                                                            
+        if (app.checkScreenResolution() >= 1920){
+        event.target.style.width = 20 + '%'; 
+        }
+        if (app.checkScreenResolution() <= 1919){
+        event.target.style.width = 50 + '%';  
+        }  
+        event.target.style.filter = "grayscale(100%)";     
+        event.target.style.borderRadius = 100 + '%';
+        event.target.style.transition = "1.2s"; 
+        })
 
-            imgList[i].addEventListener("mouseout", function(event) {                                                        
-                event.target.style.filter = "grayscale(30%)"; 
-                event.target.style.borderRadius = ""; 
-                event.target.style.transition = "8s";                                                                                                                                                            
-            })
+        imgList[i].addEventListener("mouseout", function(event) {                                                        
+            event.target.style.filter = "grayscale(30%)"; 
+            event.target.style.borderRadius = ""; 
+            event.target.style.transition = "8s";                                                                                                                                                            
+        })
         }   
     },
 
