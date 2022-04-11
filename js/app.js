@@ -92,9 +92,11 @@ const app = {
         // listent if user resize the window
         app.listenIfWindowIsResized();
         
+        
         let Interval = setInterval(function(){ // Set a time interval between each action
         
         app.OnMouseOverAction(); // call my custom style function
+        app.listenMobileOrientation(); // call mobile orientation
 
         let imageInsert = document.getElementById('insert'); 
         let divSize = imageInsert.offsetHeight;
@@ -141,6 +143,33 @@ const app = {
 
         }   
     },
+
+    //Listen SmartphoneOrientation
+    listenMobileOrientation:function (){
+    window.addEventListener("orientationchange", app.handleMobileStyleOrientationStyle)
+    },
+
+    //Syle change on SmartphoneOrientation
+    handleMobileStyleOrientationStyle:function(){
+
+        let imgList = document.querySelectorAll('img');                        
+        for (let i = 0; i < imgList.length; i++) {   
+
+        imgList[i].addEventListener("orientationchange", function() {   
+            i.style.filter = "grayscale(100%)";     
+            i.style.borderRadius = 100 + '%';
+            i.style.transition = "1.2s"; 
+        });
+
+        imgList[i].addEventListener("mouseout", function() {                                                        
+            i.style.filter = "grayscale(30%)"; 
+            i.style.borderRadius = ""; 
+            i.style.transition = "8s";                                                                                                                                                            
+        });
+
+        }   
+
+    }
 
 }
 
