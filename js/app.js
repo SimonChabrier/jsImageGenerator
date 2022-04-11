@@ -155,21 +155,22 @@ const app = {
         let imgList = document.querySelectorAll('img');                        
         for (let i = 0; i < imgList.length; i++) {   
 
-        imgList[i].addEventListener("orientationchange", function() {   
+        imgList[i].addEventListener("orientationchange", function(event) {   
+            if (event) {
             i.style.filter = "grayscale(100%)";     
             i.style.borderRadius = 100 + '%';
             i.style.transition = "1.2s"; 
-        });
+            }
 
-        imgList[i].addEventListener("mouseout", function() {                                                        
+            else {
             i.style.filter = "grayscale(30%)"; 
             i.style.borderRadius = ""; 
-            i.style.transition = "8s";                                                                                                                                                            
+            i.style.transition = "8s";   
+            }
         });
 
         }   
-
-    }
+    },
 
 }
 
