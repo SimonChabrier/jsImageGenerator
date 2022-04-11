@@ -96,7 +96,7 @@ const app = {
         let Interval = setInterval(function(){ // Set a time interval between each action
         
         app.OnMouseOverAction(); // call my custom style function
-        app.listenMobileOrientation(); // call mobile orientation
+        app.handleMobileStyleOrientationStyle(); // call mobile orientation
 
         let imageInsert = document.getElementById('insert'); 
         let divSize = imageInsert.offsetHeight;
@@ -154,6 +154,7 @@ const app = {
     handleMobileStyleOrientationStyle:function(){
 
         let acl = new Accelerometer({frequency: 60});
+        console.log(acl)
 
         console.log("Acceleration along the X-axis " + acl.x);
         console.log("Acceleration along the Y-axis " + acl.y);
