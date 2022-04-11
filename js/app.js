@@ -1,14 +1,12 @@
 const app = {
 
-    init: function ()
-    { 
+    init: function () { 
         console.log('appinit');
         app.appendImage();
     },
 
     // listen window rezise action
     listenIfWindowIsResized: function (){
-    // Attach event listener on window resize event
     window.addEventListener('resize', app.handledDisplayWindowSize)
     },
 
@@ -25,7 +23,7 @@ const app = {
         return screenWidth;
     },
 
-    //optimize requested pics size on sreen resolution
+    //just for fun ! optimize requested pics size on sreen resolution
     requestPictureSize : function () {
         
         // request image size in terms of user current window size.
@@ -77,6 +75,7 @@ const app = {
         img.style.width = '';   
         img.style.opacity = '1';  
         img.style.borderRadius = ''; 
+
         if (app.checkScreenResolution() >= 1920){
         img.style.width = 10 + '%'; 
         }
@@ -94,21 +93,23 @@ const app = {
         app.listenIfWindowIsResized();
         
         let Interval = setInterval(function(){ // Set a time interval between each action
+        
+        app.OnMouseOverAction(); // call my custom style function
 
         let imageInsert = document.getElementById('insert'); 
-        let divSize = imageInsert.offsetHeight
+        let divSize = imageInsert.offsetHeight;
 
         if (divSize < app.handledDisplayWindowSize()) { 
-
             let img = app.pictureGenerator(); // call my image generator function to grab each new generated picture
-            imageInsert.append(img); // Happend each new generated picture
-            app.OnMouseOverAction(); // call my custom style function
+            imageInsert.append(img); // Happend each new generated picture   
         } 
           
         }, 250) //timming between insert actions in ms
 
         if (app.handledDisplayWindowSize() > app.handledDisplayWindowSize()) (
+           
             clearInterval(Interval)
+
         )
                                                                                                                             
     },     
@@ -118,23 +119,26 @@ const app = {
         let imgList = document.querySelectorAll('img');                        
         for (let i = 0; i < imgList.length; i++) {   
 
-        imgList[i].addEventListener("mouseover", function(event) {                                                            
+        imgList[i].addEventListener("mouseover", function(event) {   
+
         if (app.checkScreenResolution() >= 1920){
-        event.target.style.width = 20 + '%'; 
+            event.target.style.width = 20 + '%'; 
         }
+
         if (app.checkScreenResolution() <= 1919){
-        event.target.style.width = 50 + '%';  
+            event.target.style.width = 50 + '%';  
         }  
-        event.target.style.filter = "grayscale(100%)";     
-        event.target.style.borderRadius = 100 + '%';
-        event.target.style.transition = "1.2s"; 
-        })
+            event.target.style.filter = "grayscale(100%)";     
+            event.target.style.borderRadius = 100 + '%';
+            event.target.style.transition = "1.2s"; 
+        });
 
         imgList[i].addEventListener("mouseout", function(event) {                                                        
             event.target.style.filter = "grayscale(30%)"; 
             event.target.style.borderRadius = ""; 
             event.target.style.transition = "8s";                                                                                                                                                            
-        })
+        });
+
         }   
     },
 
