@@ -12,9 +12,8 @@ const app = {
         return Math.floor(Math.random() * 100);
     },
 
-
-    checkScreenSize :function(){
-        // check curent user screen resolution
+    //get client screen resolution
+    checkScreenResolution :function(){
         let screenWidth = window.screen.width * window.devicePixelRatio ;
         return screenWidth;
     },
@@ -26,12 +25,12 @@ const app = {
         let imgHeight = Math.round((( window.innerHeight)));
 
         // set a query proportionate image height in % of curent user screen resolution
-        if (app.checkScreenSize() >= 1920){
+        if (app.checkScreenResolution() >= 1920){
             imgHeight = Math.round(imgHeight * 55 / 100);
             console.log('screen up than 1920px : request img size = ' + imgHeight)
         }
 
-        if (app.checkScreenSize() < 1919){
+        if (app.checkScreenResolution() < 1919){
             imgHeight = Math.round(imgHeight * 30 / 100);
             console.log('screen less than 1920px : request img size =  ' + imgHeight)
         }
@@ -58,7 +57,13 @@ const app = {
         img.style.width = '';   
         img.style.opacity = '1';  
         img.style.borderRadius = ''; 
+        if (app.checkScreenResolution() >= 1920){
         img.style.width = 10 + '%'; 
+        }
+
+        if (app.checkScreenResolution() <= 1919){
+            img.style.width = 30 + '%'; 
+            }
         
         }, 1000)
 
@@ -101,10 +106,15 @@ const app = {
         for (let i = 0; i < imgList.length; i++) {   
 
             imgList[i].addEventListener("mouseover", function(event) {                                                            
-                event.target.style.filter = "grayscale(100%)";   
-                event.target.style.width = 20 + '%';   
-                event.target.style.borderRadius = 100 + '%';
-                event.target.style.transition = "1.2s"; 
+            if (app.checkScreenResolution() >= 1920){
+            event.target.style.width = 20 + '%'; 
+            }
+            if (app.checkScreenResolution() <= 1919){
+            event.target.style.width = 50 + '%';  
+            }  
+            event.target.style.filter = "grayscale(100%)";     
+            event.target.style.borderRadius = 100 + '%';
+            event.target.style.transition = "1.2s"; 
             })
 
             imgList[i].addEventListener("mouseout", function(event) {                                                        
