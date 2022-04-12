@@ -155,7 +155,7 @@ const app = {
         }
     
         let acl = new Accelerometer({frequency: 30});
-        let max_magnitude = 0;
+        //let max_magnitude = 0;
         acl.addEventListener('activate', () => console.log('Ready to measure.'));
         acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
         acl.addEventListener('reading', () => {
@@ -169,7 +169,7 @@ const app = {
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
         
-                    if (acl.x > 50) 
+                    if (acl.x > 5) 
                     {                                          
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = "100%"; 
