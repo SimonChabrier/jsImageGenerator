@@ -169,12 +169,12 @@ const app = {
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
         
-                   if (acl.x > 10) 
+                   if (acl.x > 0 || acl.y > 0 || acl.z > 0) 
                     {                                          
-                        imgList[i].style.filter = "grayscale(30%)"; 
+                        imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = "100%"; 
-                        imgList[i].style.width = "30%"; 
-                        imgList[i].style.transition = ".2s"; 
+                        imgList[i].style.width = "50%"; 
+                        imgList[i].style.transition = ".4s"; 
                     }                                                                                                                                                
                 } 
                 // todo
