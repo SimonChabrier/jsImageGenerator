@@ -157,19 +157,12 @@ const app = {
             acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
             acl.addEventListener('reading', () => {
 
-                let element = document.createElement('div');
-                let message = document.createTextNode('Vous inclinez suffisament l\'écran')
-                element.appendChild(message);
-
-                let target = document.getElementById('insert');
-                document.body.insertBefore(element, target);
-
-
                 // actions to do on Accelerometer reading
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
                     // set Y axe inclinaison min value we need to start this
-                    if (acl.y > 7) {                         
+                    if (acl.y > 7) {               
+                        app.displayMessage();          
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = 100 + '%'; 
                         imgList[i].style.width = "50%"; 
@@ -185,6 +178,15 @@ const app = {
             acl.start(); // start Accelerometer
         });
     },
+
+    displayMessage:function() {
+        let element = document.createElement('div');
+        let message = document.createTextNode('Vous inclinez suffisament l\'écran')
+        element.appendChild(message);
+
+        let target = document.getElementById('insert'); 
+        document.body.insertBefore(element, target);
+    }
 
 }
 
