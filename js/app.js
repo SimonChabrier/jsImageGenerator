@@ -180,7 +180,7 @@ const app = {
                     else {
 
                         imgList[i].style.filter = ''; 
-                        imgList[i].style.transition = "1s";  
+                        imgList[i].style.transition = "2s";  
                      }
                 } 
                 // todo
