@@ -1,8 +1,7 @@
 ## Js Vanilla random image generator
 
-> You can test this script here :
 
-https://js.simschab.fr/picgenerator/index.html
+[You can click here and test this script](https://js.simschab.fr/picgenerator/index.html)
 
 - Use the current window height.
 
