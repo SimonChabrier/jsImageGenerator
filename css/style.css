@@ -5,10 +5,13 @@ body, html{
 }
 
 .visible {
-visibility: visible;
+    display: block;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 #insert {
