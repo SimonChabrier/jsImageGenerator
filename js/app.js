@@ -180,14 +180,16 @@ const app = {
     },
 
     displayMessage:function() {
+        for (let i = 0; i <= 1; i++){
         let element = document.createElement('div');
         let message = document.createTextNode('Vous inclinez suffisament l\'écran')
         element.appendChild(message);
 
         let target = document.getElementById('insert'); 
         document.body.insertBefore(element, target);
-        return;
-    }
+        break;
+        }  
+    },
 
 }
 
