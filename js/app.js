@@ -96,8 +96,7 @@ const app = {
         let Interval = setInterval(function(){ // Set a time interval between each action
         
         app.OnMouseOverAction(); // call my custom style function
-        //app.handleMobileStyleOrientationStyle(); // call mobile orientation
-        app.sensor();
+        app.sensor(); // call Accelerometer function
 
         let imageInsert = document.getElementById('insert'); 
         let divSize = imageInsert.offsetHeight;
@@ -138,62 +137,46 @@ const app = {
 
         imgList[i].addEventListener("mouseout", function(event) {                                                        
             event.target.style.filter = "grayscale(30%)"; 
-            event.target.style.borderRadius = ""; 
-            event.target.style.transition = "8s";                                                                                                                                                            
+            event.target.style.borderRadius = "";                                                                                                                                                             
         });
 
         }   
     },
 
+    //Change styles on SmartPhone X mouvements
+    sensor:function() {
+        navigator.permissions.query({ name: 'accelerometer' }).then(result => {
+            if (result.state === 'denied') {
+                alert('Permission to use accelerometer sensor is denied.');
+                return;
+            }
+        
+            let acl = new Accelerometer({frequency: 15});
 
-    sensor:function(){
+            acl.addEventListener('activate', () => console.log('Accelerometer is reading.'));
+            acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
+            acl.addEventListener('reading', () => {
 
-    navigator.permissions.query({ name: 'accelerometer' }).then(result => {
-        if (result.state === 'denied') {
-            console.log('Permission to use accelerometer sensor is denied.');
-            return;
-        }
-    
-        let acl = new Accelerometer({frequency: 15});
-        //let max_magnitude = 0;
-        acl.addEventListener('activate', () => console.log('Ready to measure.'));
-        acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
-        acl.addEventListener('reading', () => {
-            // let magnitude = Math.hypot(acl.x, acl.y, acl.z);
-            // if (magnitude > max_magnitude) {
-            //     max_magnitude = magnitude;
-            //     console.log(`Max magnitude: ${max_magnitude} m/s2`);
-
-
-                // todo
+                // actions to do on Accelerometer reading
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
-        
-                    if (acl.y > 7) 
-                    {                                          
+                    // set Y axe inclinaison min value we need to start this
+                    if (acl.y > 7) {                         
                         imgList[i].style.filter = "grayscale(100%)"; 
-                        imgList[i].style.borderRadius = "100%"; 
+                        imgList[i].style.borderRadius = 100 + '%'; 
                         imgList[i].style.width = "50%"; 
-                        imgList[i].style.transition = "1.5s"; 
+                        imgList[i].style.transition = "2s"; 
                     }      
                     
                     else {
-
                         imgList[i].style.filter = ''; 
-                        imgList[i].style.transition = "2s";  
-                     }
+                    }
                 } 
-                // todo
+            });
 
-
-            //}
+            acl.start(); // start Accelerometer
         });
-
-      
-
-        acl.start();
-    });
-},
+    },
 
 }
 
