@@ -169,7 +169,7 @@ const app = {
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
         
-                   if (acl.x > 1) 
+                   if (acl.x > 0) 
                     {                                          
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = "100%"; 
@@ -177,12 +177,12 @@ const app = {
                         imgList[i].style.transition = ".4s"; 
                     }      
                     
-                    else {
+                    // else {
 
-                        imgList[i].style.filter = ""; 
-                        imgList[i].style.borderRadius = 0; 
-                        imgList[i].style.width = "10%"; 
-                    }
+                    //     imgList[i].style.filter = ''; 
+                    //     imgList[i].style.borderRadius = ''; 
+                    //     img.style.width = 33.33 + '%';  
+                    // }
                 } 
                 // todo
 
