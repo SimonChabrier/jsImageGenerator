@@ -15,3 +15,5 @@ On a computer, the style of the images is changed by hovering the mouse over the
 Everything here is done in javascript vanilla.
 
 This is a simple example to understand how to use the accelerometer on phones to create actions.
+
+https://developer.mozilla.org/en-US/docs/Web/API/Accelerometer
