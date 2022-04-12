@@ -154,7 +154,7 @@ const app = {
             return;
         }
     
-        let acl = new Accelerometer({frequency: 30});
+        let acl = new Accelerometer({frequency: 60});
         let max_magnitude = 0;
         acl.addEventListener('activate', () => console.log('Ready to measure.'));
         acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
@@ -169,7 +169,7 @@ const app = {
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
         
-                   if (acl.x > 0) 
+                    if (acl.x > 0) 
                     {                                          
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = "100%"; 
@@ -177,12 +177,12 @@ const app = {
                         imgList[i].style.transition = ".4s"; 
                     }      
                     
-                    // else {
+                    else {
 
-                    //     imgList[i].style.filter = ''; 
+                        imgList[i].style.filter = ''; 
                     //     imgList[i].style.borderRadius = ''; 
                     //     img.style.width = 33.33 + '%';  
-                    // }
+                     }
                 } 
                 // todo
 
