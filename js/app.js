@@ -175,7 +175,15 @@ const app = {
                         imgList[i].style.borderRadius = "100%"; 
                         imgList[i].style.width = "50%"; 
                         imgList[i].style.transition = ".4s"; 
-                    }                                                                                                                                                
+                    }      
+                    
+                    else {
+
+                        imgList[i].style.filter = ""; 
+                        imgList[i].style.borderRadius = ""; 
+                        imgList[i].style.width = ""; 
+                        imgList[i].style.transition = ".8s"; 
+                    }
                 } 
                 // todo
 
