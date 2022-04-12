@@ -150,12 +150,20 @@ const app = {
                 alert('Permission to use accelerometer sensor is denied.');
                 return;
             }
-        
-            let acl = new Accelerometer({frequency: 15});
+            // frequency is in Hz value: 60 -> 60 times a second
+            let acl = new Accelerometer({frequency: 10});
 
             acl.addEventListener('activate', () => console.log('Accelerometer is reading.'));
             acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
             acl.addEventListener('reading', () => {
+
+                let element = document.createElement('div');
+                let message = document.createTextNode('Vous inclinez suffisament l\'écran')
+                element.appendChild(message);
+
+                let target = document.getElementById('insert');
+                document.body.insertBefore(element, target);
+
 
                 // actions to do on Accelerometer reading
                 let imgList = document.querySelectorAll('img');    
