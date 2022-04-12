@@ -9,7 +9,9 @@ body, html{
     padding: 1rem;
     font-size: 1rem;
     text-transform: uppercase;
+    transition: 1s;
 }
+
 .hidden {
     display: none;
 }
