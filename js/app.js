@@ -174,7 +174,7 @@ const app = {
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = "100%"; 
                         imgList[i].style.width = "50%"; 
-                        imgList[i].style.transition = ".4s"; 
+                        imgList[i].style.transition = "1.5s"; 
                     }      
                     
                     else {
