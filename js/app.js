@@ -154,7 +154,7 @@ const app = {
             return;
         }
     
-        let acl = new Accelerometer({frequency: 30});
+        let acl = new Accelerometer({frequency: 80});
         //let max_magnitude = 0;
         acl.addEventListener('activate', () => console.log('Ready to measure.'));
         acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
@@ -176,13 +176,7 @@ const app = {
                         imgList[i].style.width = "50%"; 
                         imgList[i].style.transition = ".5s"; 
                     }      
-                    
-                    else {
-
-                        imgList[i].style.filter = ''; 
-                    //     imgList[i].style.borderRadius = ''; 
-                    //     img.style.width = 33.33 + '%';  
-                     }
+                
                 } 
                 // todo
 
