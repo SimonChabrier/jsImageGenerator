@@ -96,7 +96,8 @@ const app = {
         let Interval = setInterval(function(){ // Set a time interval between each action
         
         app.OnMouseOverAction(); // call my custom style function
-        app.handleMobileStyleOrientationStyle(); // call mobile orientation
+        //app.handleMobileStyleOrientationStyle(); // call mobile orientation
+        app.sensor();
 
         let imageInsert = document.getElementById('insert'); 
         let divSize = imageInsert.offsetHeight;
@@ -144,31 +145,48 @@ const app = {
         }   
     },
 
-    //Listen SmartphoneOrientation
-    listenMobileAcceleration:function (){
-    window.addEventListener('reading', app.handleMobileStyleOrientationStyle)
-   
-    },
 
-    //Syle change on SmartphoneOrientation
-    handleMobileStyleOrientationStyle:function(){
+    sensor:function(){
 
-        let acl = new Accelerometer({frequency: 60});
+    navigator.permissions.query({ name: 'accelerometer' }).then(result => {
+        if (result.state === 'denied') {
+            console.log('Permission to use accelerometer sensor is denied.');
+            return;
+        }
+    
+        let acl = new Accelerometer({frequency: 30});
+        let max_magnitude = 0;
+        acl.addEventListener('activate', () => console.log('Ready to measure.'));
+        acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
+        acl.addEventListener('reading', () => {
+            let magnitude = Math.hypot(acl.x, acl.y, acl.z);
+            if (magnitude > max_magnitude) {
+                max_magnitude = magnitude;
+                console.log(`Max magnitude: ${max_magnitude} m/s2`);
+
+
+                // todo
+                let imgList = document.querySelectorAll('img');    
+                for (let i = 0; i < imgList.length; i++) { 
+        
+                   if (acl.x > 0) 
+                    {                                          
+                        imgList[i].style.filter = "grayscale(30%)"; 
+                        imgList[i].style.borderRadius = "100%"; 
+                        imgList[i].style.width = "30%"; 
+                    }                                                                                                                                                
+                } 
+                // todo
+
+
+            }
+        });
+
+      
+
         acl.start();
-        //console.log(acl);
-        console.log("Acceleration along the X-axis " + acl.x);
-        //console.log("Acceleration along the Y-axis " + acl.y);
-        //console.log("Acceleration along the Z-axis " + acl.z);
-        let imgList = document.querySelectorAll('img');    
-        for (let i = 0; i < imgList.length; i++) {   
-           if (acl.x > 0) {                                          
-            imgList[i].style.filter = "grayscale(30%)"; 
-            imgList[i].style.borderRadius = "100%"; 
-            imgList[i].style.width = "50%"; 
-        }                                                                                                                                                
-        }   
-    },
-
+    });
+},
 
 }
 
