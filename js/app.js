@@ -176,7 +176,12 @@ const app = {
                         imgList[i].style.width = "50%"; 
                         imgList[i].style.transition = ".5s"; 
                     }      
-                
+                    
+                    else {
+
+                        imgList[i].style.filter = ''; 
+                        imgList[i].style.transition = "1s";  
+                     }
                 } 
                 // todo
 
