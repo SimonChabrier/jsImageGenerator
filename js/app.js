@@ -169,7 +169,7 @@ const app = {
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
         
-                   if (acl.x > 0) 
+                   if (acl.x > 10) 
                     {                                          
                         imgList[i].style.filter = "grayscale(30%)"; 
                         imgList[i].style.borderRadius = "100%"; 
