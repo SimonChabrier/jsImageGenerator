@@ -180,12 +180,14 @@ const app = {
         });
     },
 
+    //Add a message if the screen is tilted enough
     displayMessage:function() {
         let target = document.getElementById('info'); 
         target.classList.add('visible');
         target.classList.remove('hidden');
     },
 
+    //Hide the message if the screen is not tilted enough
     hideMessage:function() {
         let target = document.getElementById('info'); 
         target.classList.add('hidden');

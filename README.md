@@ -10,6 +10,8 @@ Images are randomly generated and optimized based on the current window size.
 
 On phone, the display of images changes depending on the tilt of the phone on the X axis.
 
+If the screen inclination value is reached, an information message is displayed.
+
 On a computer, the style of the images is changed by hovering the mouse over the current image.
 
 Everything here is done in javascript vanilla.
