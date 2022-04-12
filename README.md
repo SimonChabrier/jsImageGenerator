@@ -13,7 +13,7 @@
 
 - Requested images size are dynamically changed if the window size is changed.
 
-- On phone, effects applied to images change depending on the tilt of the phone on the X axis.
+- On phone, effects applied to images change depending on the phonr tilt on the X axis.
 
 - If the screen inclination X axis value is reached, an information message is displayed to inform you.
 
