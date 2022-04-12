@@ -155,29 +155,17 @@ const app = {
 
         let acl = new Accelerometer({frequency: 60});
         acl.start();
-        console.log(acl);
-
-        //console.log("Acceleration along the X-axis " + acl.x);
+        //console.log(acl);
+        console.log("Acceleration along the X-axis " + acl.x);
         //console.log("Acceleration along the Y-axis " + acl.y);
         //console.log("Acceleration along the Z-axis " + acl.z);
-
-        let imgList = document.querySelectorAll('img');                        
+        let imgList = document.querySelectorAll('img');    
         for (let i = 0; i < imgList.length; i++) {   
-
-        imgList[i].addEventListener('reading', function() {   
-            if (acl.x || acl.x || acl.y) {
-            i.style.filter = "grayscale(100%)";     
-            i.style.borderRadius = 100 + '%';
-            i.style.transition = "1.2s"; 
-            }
-
-            if (acl.x || acl.x || acl.y) {
-            i.style.filter = "grayscale(30%)"; 
-            i.style.borderRadius = ""; 
-            i.style.transition = "8s";   
-            }
-        });
-
+           if (acl.x > 0) {                                          
+            imgList[i].style.filter = "grayscale(30%)"; 
+            imgList[i].style.borderRadius = "100%"; 
+            imgList[i].style.width = "50%"; 
+        }                                                                                                                                                
         }   
     },
 
