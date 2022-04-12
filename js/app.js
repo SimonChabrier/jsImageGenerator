@@ -154,7 +154,7 @@ const app = {
             return;
         }
     
-        let acl = new Accelerometer({frequency: 80});
+        let acl = new Accelerometer({frequency: 5});
         //let max_magnitude = 0;
         acl.addEventListener('activate', () => console.log('Ready to measure.'));
         acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
