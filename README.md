@@ -6,6 +6,8 @@ This image generator uses the current window dimensions.
 
 As long as the window is not filled, it continues to generate and add images.
 
+If the window is filled but the user enlarges it then we start to generate images again.
+
 Images are randomly generated and optimized based on the current window size.
 
 On phone, the display of images changes depending on the tilt of the phone on the X axis.

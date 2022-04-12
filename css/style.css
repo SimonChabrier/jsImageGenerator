@@ -4,16 +4,19 @@ body, html{
     text-align: center;
 }
 
-.visible {
+.visible p{
     display: block;
-    padding: 1rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
     text-transform: uppercase;
+    opacity: 1;
     transition: 1s;
 }
 
-.hidden {
+.hidden p{
     display: none;
+    padding: 0;
+    transition: 1s;
 }
 
 #insert {
