@@ -171,6 +171,7 @@ const app = {
                     
                     else {
                         imgList[i].style.filter = ''; 
+                        app.hideMessage();
                     }
                 } 
             });
@@ -180,15 +181,15 @@ const app = {
     },
 
     displayMessage:function() {
-        for (let i = 0; i <= 1; i++){
-        let element = document.createElement('div');
-        let message = document.createTextNode('Vous inclinez suffisament l\'écran')
-        element.appendChild(message);
+        let target = document.getElementById('info'); 
+        target.classList.add('visible');
+        target.classList.remove('hidden');
+    },
 
-        let target = document.getElementById('insert'); 
-        document.body.insertBefore(element, target);
-        break;
-        }  
+    hideMessage:function() {
+        let target = document.getElementById('info'); 
+        target.classList.add('hidden');
+        target.classList.remove('visible');
     },
 
 }

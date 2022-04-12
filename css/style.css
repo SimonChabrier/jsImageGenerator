@@ -4,6 +4,13 @@ body, html{
     text-align: center;
 }
 
+.visible {
+visibility: visible;
+}
+.hidden {
+    visibility: hidden;
+}
+
 #insert {
     font-size: 0;
     display: flex;
