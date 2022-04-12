@@ -22,6 +22,6 @@ https://js.simschab.fr/picgenerator/index.html
 
 - Everything here is done in javascript vanilla.
 
-- this script can be used as an example to understand how to use the accelerometer on phones to create actions.
+- This script can be used as an example to understand how to use the accelerometer on phones to create actions.
 
 https://developer.mozilla.org/en-US/docs/Web/API/Accelerometer
