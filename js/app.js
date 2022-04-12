@@ -174,6 +174,7 @@ const app = {
                         imgList[i].style.filter = "grayscale(30%)"; 
                         imgList[i].style.borderRadius = "100%"; 
                         imgList[i].style.width = "30%"; 
+                        imgList[i].style.transition = ".2s"; 
                     }                                                                                                                                                
                 } 
                 // todo
