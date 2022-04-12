@@ -157,12 +157,15 @@ const app = {
             acl.addEventListener('error', error => console.log(`Error: ${error.name}`));
             acl.addEventListener('reading', () => {
 
+                if (acl.y > 7){
+                    app.displayMessage(); 
+                }
+                
                 // actions to do on Accelerometer reading
                 let imgList = document.querySelectorAll('img');    
                 for (let i = 0; i < imgList.length; i++) { 
                     // set Y axe inclinaison min value we need to start this
-                    if (acl.y > 7) {               
-                        app.displayMessage();          
+                    if (acl.y > 7) {                        
                         imgList[i].style.filter = "grayscale(100%)"; 
                         imgList[i].style.borderRadius = 100 + '%'; 
                         imgList[i].style.width = "50%"; 
